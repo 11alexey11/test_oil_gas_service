@@ -1,0 +1,1 @@
+export const getPersonsSelector = (state) => state.table.persons;

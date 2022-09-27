@@ -22,6 +22,6 @@ const body = {
 
 export const personsApi = {
     getPersons() {
-        return axios.post(fakePersonsUrl, body).then((response) => response)
+        return axios.post(fakePersonsUrl, body).then((response) => response.data);
     }
 }

@@ -1,8 +1,12 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { getPersons, getPersonsSelector } from '../../store/table';
+
 import { Table } from '../Table';
 
 import './index.scss';
 
 const App = () => {
+
     // const scrollOneHandler = (e) => {
     //     // clientHeight + scrollTop = clientHeight
     //     console.log(e.target.clientHeight); // высота видимой области
