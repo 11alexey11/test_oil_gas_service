@@ -23,22 +23,7 @@ module.exports = {
             {
                 test: /\.s(a|c)ss$/,
                 exclude: /node_modules/,
-                use: [
-                    isProd ? MiniCssExtractPlugin.loader : 'style-loader',
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            modules: true,
-                            sourceMap: !isProd
-                        }
-                    },
-                    {
-                        loader: 'sass-loader',
-                        options: {
-                            sourceMap: !isProd
-                        }
-                    }
-                ]
+                use: [ 'style-loader', 'css-loader', 'sass-loader' ]
             }
         ]
     },
