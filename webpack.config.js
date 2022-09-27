@@ -2,6 +2,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
+const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -38,6 +40,7 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: isProd ? '[name].[contenthash].css': '[name].css'
         }),
+        new Dotenv()
     ],
     devServer: {
         port: 5000,
