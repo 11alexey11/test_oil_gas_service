@@ -1,8 +1,13 @@
+@import '../../styles/variables.scss';
+
 * {
     margin: 0;
     padding: 0;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+    color: $dark-font;
 }
 
 html, body, #root {
@@ -23,21 +28,7 @@ html, body, #root {
 }
 
 .container {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-}
-
-.one {
-    height: 150px;
-    width: 500px;
-    border: 1px solid #000000;
-    overflow-y: scroll;
-}
-
-.two {
-    height: 150px;
-    width: 500px;
-    border: 1px solid #000000;
-    overflow-y: scroll;
+    justify-content: center;
+    width: 100%;
 }

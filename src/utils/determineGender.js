@@ -1,0 +1,1 @@
+export const determineGender = (gender) => gender === 'female' ? 'Ж' : 'М';

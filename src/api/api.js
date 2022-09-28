@@ -4,8 +4,6 @@ import { fakePersonsUrl } from '../constants/urls';
 
 const { API_TOKEN } = process.env;
 
-console.log(API_TOKEN);
-
 const body = {
     token: API_TOKEN,
     data: {

@@ -1,0 +1,89 @@
+@import '../../styles/variables.scss';
+
+.wrapper {
+    max-width: 900px;
+    width: 100%;
+}
+
+.table__header {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: $light-grey-row;
+
+    &__title {
+        padding: 15px 0;
+        background-color: $light-grey-row;
+        font-size: 30px;
+    }
+
+    &__row {
+        background-color: $blue-header;
+
+        &__cell {
+            padding: 15px 10px;
+            text-align: left;
+            color: $white-font;
+        }
+    }   
+}
+
+.table__main {
+    height: 150px;
+    overflow-y: auto;
+
+    &__table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+
+        &__body__row__cell {
+            padding: 15px 10px;
+            text-align: left;
+        }
+
+        &__body__row:nth-child(odd) {
+            background-color: $dark-grey-row;
+        }
+    }
+}
+
+::-webkit-scrollbar {
+	width: 5px;
+}
+
+::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 5px rgba(0,0,0,0.3); 
+} 
+::-webkit-scrollbar-thumb {
+	box-shadow: inset 0 0 5px rgba(0,0,0,0.3); 
+}
+
+
+.number {
+    width: 40px;
+}
+
+.name {
+    width: 200px;
+}
+
+.gender {
+    width: 70px;
+}
+
+.age {
+    width: 80px;
+}
+
+.city {
+    width: 140px;
+}
+
+.duration {
+    width: 120px;
+}
+
+.results {
+    width: 110px;
+}
