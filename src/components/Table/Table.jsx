@@ -9,8 +9,8 @@ import { TableRow } from './TableRow';
 import './index.scss';
 
 const Table = () => {
-    const [isFetching, setIsFetching] = useState(true);
     const dispatch = useDispatch();
+    const [isFetching, setIsFetching] = useState(true);
 
     const persons = useSelector(getPersonsSelector);
 

@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, XAxis, YAxis } from 'recharts';
 
 import { chartApi } from '../../api/api';
@@ -19,11 +21,20 @@ const data = {
 }
 
 const Chart = () => {
+    const dispatch = useDispatch();
+    const [isFetching, setIsFetching] = useState();
     const chartData = validateChartData(data);
 
+    const scrollHandler = ({ target }) => {
+        // clientHeight + scrollTop = clientHeight
+        if (target.scrollHeight === target.clientHeight + target.scrollTop) {
+            setIsFetching(true);
+        }
+    }
+
     return (
-        <div className='chart'>
-            <ResponsiveContainer>
+        <div className='chart' onScroll={scrollHandler}>
+            <ResponsiveContainer minHeight={450}>
                 <LineChart
                     layout='vertical'
                     data={chartData}
