@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getPersons } from '../../store/table/actions';
@@ -9,13 +9,25 @@ import { TableRow } from './TableRow';
 import './index.scss';
 
 const Table = () => {
+    const [isFetching, setIsFetching] = useState(true);
     const dispatch = useDispatch();
 
     const persons = useSelector(getPersonsSelector);
 
-    // useEffect(() => {
-    //     dispatch(getPersons());
-    // }, []);
+    useEffect(() => {
+        if (isFetching) {
+                dispatch(getPersons());
+                setIsFetching(false);
+        }
+        
+    }, [isFetching]);
+
+    const scrollHandler = ({ target }) => {
+        // clientHeight + scrollTop = clientHeight
+        if (target.scrollHeight === target.clientHeight + target.scrollTop) {
+            setIsFetching(true);
+        }
+    }
 
     return (
         <div className='wrapper'>
@@ -23,7 +35,7 @@ const Table = () => {
                 <caption className='table__header__title'>Таблица участников</caption>
                 <TableHeader />
             </table>
-            <div className='table__main'>
+            <div className='table__main' onScroll={scrollHandler}>
                 <table className='table__main__table'>
                     <tbody className='table__main__table__body'>
                         {
