@@ -1,0 +1,1 @@
+export const chartLineNames = ['av', 'bv', 'cv', 'dv', 'ev', 'fv', 'gv'];

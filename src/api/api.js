@@ -22,13 +22,15 @@ const chartBody = {
     token: API_TOKEN,
     data: {
         date: "dateTime|ISOtime",
+        hour: "numberInt|0,23|",
         av: "functionArray|18|numberInt|-40,40",
         bv: "functionArray|18|numberInt|-40,40",
         cv: "functionArray|18|numberInt|-40,40",
         dv: "functionArray|18|numberInt|-40,40",
         ev: "functionArray|18|numberInt|-40,40",
         fv: "functionArray|18|numberInt|-40,40",
-        gv: "functionArray|18|numberInt|-40,40"
+        gv: "functionArray|18|numberInt|-40,40",
+
     }
 }
 
