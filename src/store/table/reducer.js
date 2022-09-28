@@ -1,4 +1,4 @@
-import { tableActionTypes } from "./actionTypes";
+import { tableActionTypes } from './actionTypes';
 
 const initialState = {
     persons: []

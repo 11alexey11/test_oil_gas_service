@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import { tableReducer } from './table';
 
 const reducers = combineReducers({
-    table: tableReducer
+    table: tableReducer,
 });
 
 const composeEnhacers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

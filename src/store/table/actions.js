@@ -1,4 +1,4 @@
-import { personsApi } from "../../api/api";
+import { personsApi } from '../../api/api';
 import { tableActionTypes } from "./actionTypes";
 
 const getPersonsAction = (persons) => ({

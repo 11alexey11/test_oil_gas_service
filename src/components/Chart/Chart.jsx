@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, XAxis, YAxis } from 'recharts';
 
 import { chartApi } from '../../api/api';
+import { getCoordinatesSelector } from '../../store/chart/selectors';
 import { generateColor } from '../../utils/generateColor';
 import { validateChartData } from '../../utils/validateChartData'
 
@@ -23,6 +24,8 @@ const data = {
 const Chart = () => {
     const dispatch = useDispatch();
     const [isFetching, setIsFetching] = useState();
+
+    // const coordinates = validateChartData(useSelector(getCoordinatesSelector));
     const chartData = validateChartData(data);
 
     const scrollHandler = ({ target }) => {
