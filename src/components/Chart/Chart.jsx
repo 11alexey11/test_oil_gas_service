@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, XAxis, YAxis } from 'recharts';
 
 import { chartApi } from '../../api/api';
+import { getData } from '../../store/chart/actions';
 import { getCoordinatesSelector } from '../../store/chart/selectors';
 import { generateColor } from '../../utils/generateColor';
 import { validateChartData } from '../../utils/validateChartData'
@@ -34,6 +35,14 @@ const Chart = () => {
             setIsFetching(true);
         }
     }
+
+    useEffect(() => {
+        if (isFetching) {
+                // dispatch(getData());
+                setIsFetching(false);
+        }
+        
+    }, [isFetching]);
 
     return (
         <div className='chart' onScroll={scrollHandler}>
