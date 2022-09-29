@@ -11,7 +11,6 @@ import { validateChartData } from '../../utils/validateChartData'
 import './index.scss';
 
 const Chart = () => {
-    const [chartData, setChartData] = useState([]);
     const dispatch = useDispatch();
     const [isFetching, setIsFetching] = useState(true);
 
@@ -36,7 +35,7 @@ const Chart = () => {
 
     return (
         <div className='chart' onScroll={scrollHandler}>
-            <ResponsiveContainer width={300} height={400}>
+            <ResponsiveContainer width="100%" height={400}>
                 <LineChart
                     layout='vertical'
                     data={coordinates}

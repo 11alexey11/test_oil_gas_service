@@ -1,7 +1,8 @@
 import { tableActionTypes } from './actionTypes';
 
 const initialState = {
-    persons: []
+    persons: [],
+    errorMessage: ''
 };
 
 export const tableReducer = (state = initialState, action) => {
@@ -9,7 +10,8 @@ export const tableReducer = (state = initialState, action) => {
         case tableActionTypes.getPersons: {
             return {
                 ...state,
-                persons: [ ...state.persons, ...action.payload ]
+                persons: [ ...state.persons, ...action.payload.data ],
+                errorMessage: action.payload.errorMessage
             }
         }
         default: {

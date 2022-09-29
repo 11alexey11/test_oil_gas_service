@@ -17,7 +17,7 @@ const TableCell = ({ value, cn, isNamePicExist, isRes }) => {
                 isNamePicExist &&
                 <td className={`table__main__table__body__row__cell ${cn}`}>
                     <img className='table__main__table__body__row__cell icon' src={nameIcon} alt='name'></img>
-                    {value}
+                    <span>{value}</span>
                 </td>
             }
         </>

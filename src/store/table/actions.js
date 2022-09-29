@@ -8,7 +8,7 @@ const getPersonsAction = (persons) => ({
 
 export const getPersons = () => {
     return async (dispatch) => {
-        const persons = await personsApi.getPersons();
-        dispatch(getPersonsAction(persons));
+        const response = await personsApi.getPersons();
+        dispatch(getPersonsAction(response));
     }
 };

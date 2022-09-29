@@ -37,15 +37,15 @@ const chartBody = {
 export const personsApi = {
     getPersons() {
         return axios.post(fakePersonsUrl, personBody)
-            .then((response) => response.data)
-            .catch((err) => err.message);
+            .then((response) => ({ data: response.data, errorMessage: '' }))
+            .catch((err) => ({ data: [], errorMessage: err.message }));
     }
 }
 
 export const chartApi = {
     getCoordinates() {
         return axios.post(fakePersonsUrl, chartBody)
-            .then((response) => response.data)
-            .catch((err) => err.message);
+            .then((response) => ({ data: response.data, errorMessage: '' }))
+            .catch((err) => ({ data: [], errorMessage: err.message }));
     }
 }

@@ -8,7 +8,7 @@ const getDataAction = (data) => ({
 
 export const getData = () => {
     return async (dispatch) => {
-        const data = await chartApi.getCoordinates();
-        dispatch(getDataAction(data));
+        const response = await chartApi.getCoordinates();
+        dispatch(getDataAction(response));
     }
 };
