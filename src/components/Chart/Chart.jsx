@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { CartesianGrid, Line, LineChart, ResponsiveContainer, XAxis, YAxis } from 'recharts';
+import { Brush, CartesianGrid, Line, LineChart, ResponsiveContainer, XAxis, YAxis } from 'recharts';
 
-import { chartApi } from '../../api/api';
+import { chartLineNames } from '../../constants/chartLineNames';
 import { getData } from '../../store/chart/actions';
 import { getCoordinatesSelector } from '../../store/chart/selectors';
 import { generateColor } from '../../utils/generateColor';
@@ -23,11 +23,13 @@ const data = {
 }
 
 const Chart = () => {
+    const [chartData, setChartData] = useState([]);
     const dispatch = useDispatch();
-    const [isFetching, setIsFetching] = useState();
+    const [isFetching, setIsFetching] = useState(true);
+    // мемоизировать цвета, чтобы одинаковый цвет графиков был
+    const colors = useMemo(() => generateColor(chartLineNames.length), [chartLineNames.length]);
 
-    // const coordinates = validateChartData(useSelector(getCoordinatesSelector));
-    const chartData = validateChartData(data);
+    // const coordinates = useSelector(getCoordinatesSelector);
 
     const scrollHandler = ({ target }) => {
         // clientHeight + scrollTop = clientHeight
@@ -39,6 +41,7 @@ const Chart = () => {
     useEffect(() => {
         if (isFetching) {
                 // dispatch(getData());
+                setChartData([...chartData, ...validateChartData(data)]);
                 setIsFetching(false);
         }
         
@@ -46,7 +49,7 @@ const Chart = () => {
 
     return (
         <div className='chart' onScroll={scrollHandler}>
-            <ResponsiveContainer minHeight={450}>
+            <ResponsiveContainer>
                 <LineChart
                     layout='vertical'
                     data={chartData}
@@ -57,16 +60,18 @@ const Chart = () => {
                         bottom: 5
                       }}
                 >
+                    <Brush dataKey="name" height={30} stroke="#8884d8" width={150} />
                     <CartesianGrid vertical={false} />
-                    <XAxis type='number' />
-                    <YAxis type='category' dataKey='name' />
-                    <Line dataKey='av' stroke={generateColor()} dot={false} isAnimationActive={false} />
-                    <Line dataKey='bv' stroke={generateColor()} dot={false} isAnimationActive={false} />
-                    <Line dataKey='cv' stroke={generateColor()} dot={false} isAnimationActive={false} />
-                    <Line dataKey='dv' stroke={generateColor()} dot={false} isAnimationActive={false} />
-                    <Line dataKey='ev' stroke={generateColor()} dot={false} isAnimationActive={false} />
-                    <Line dataKey='fv' stroke={generateColor()} dot={false} isAnimationActive={false} />
-                    <Line dataKey='gv' stroke={generateColor()} dot={false} isAnimationActive={false} />
+                    <XAxis type='number' orientation='top' />
+                    <YAxis 
+                        type='category'
+                        dataKey='name' 
+                    />
+                    {
+                        chartLineNames.map((item, index) => {
+                            return <Line key={index} dataKey={item} stroke={colors[index]} dot={false} isAnimationActive={false} />
+                        })
+                    }
                 </LineChart>
             </ResponsiveContainer>
             

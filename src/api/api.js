@@ -21,8 +21,8 @@ const personBody = {
 const chartBody = {
     token: API_TOKEN,
     data: {
-        date: "dateTime|ISOtime",
-        hour: "numberInt|0,23|",
+        date: "dateTime|ISOdate",
+        hour: "numberInt|0,23",
         av: "functionArray|18|numberInt|-40,40",
         bv: "functionArray|18|numberInt|-40,40",
         cv: "functionArray|18|numberInt|-40,40",
