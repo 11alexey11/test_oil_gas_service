@@ -39,7 +39,7 @@ const Table = () => {
                 <table className='table__main__table'>
                     <tbody className='table__main__table__body'>
                         {
-                            persons.map((person, index) => <TableRow key={person.id} person={person} order={index + 1} />)
+                            persons.map((person, index) => <TableRow key={index} person={person} order={index + 1} />)
                         }
                     </tbody>
                 </table>

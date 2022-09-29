@@ -26,6 +26,10 @@ module.exports = {
                 test: /\.s(a|c)ss$/,
                 exclude: /node_modules/,
                 use: [ 'style-loader', 'css-loader', 'sass-loader' ]
+            },
+            {
+                test: /\.(png|jpe?g|gif)$/i,
+                type: 'asset/resource'
             }
         ]
     },

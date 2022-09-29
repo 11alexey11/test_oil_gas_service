@@ -40,6 +40,10 @@
         &__body__row__cell {
             padding: 15px 10px;
             text-align: left;
+
+            & .icon:hover {
+                cursor: pointer;
+            }
         }
 
         &__body__row:nth-child(odd) {
