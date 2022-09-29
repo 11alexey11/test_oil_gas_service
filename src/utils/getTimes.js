@@ -1,3 +1,4 @@
+// функция для получения массива времени (hour - начальный час, count - кол-во времени, возвращает массив времен)
 export const getTimes = (hour, count) => {
     const minutes = [0, 15, 30, 45];
     let randomNumber = Math.floor(Math.random() * minutes.length);

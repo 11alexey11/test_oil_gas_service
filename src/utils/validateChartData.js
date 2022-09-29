@@ -1,5 +1,6 @@
 import { getTimes } from './getTimes';
 
+// функция для валидации данных с бека для правильной отрисовки
 export const validateChartData = (data) => {
     const {
         date,

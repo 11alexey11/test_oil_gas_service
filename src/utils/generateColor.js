@@ -1,3 +1,4 @@
+// функция для генерации массива цветов для линий (count - кол-во линий, возвращает массив цветов)
 export const generateColor = (count) => {
     const colors = [];
     for (let i = 0; i < count; i += 1) {
