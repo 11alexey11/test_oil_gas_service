@@ -17,7 +17,7 @@ const Table = () => {
 
     useEffect(() => {
         if (isFetching) {
-                // dispatch(getPersons());
+                dispatch(getPersons());
                 setIsFetching(false);
         }
         
