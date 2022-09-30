@@ -1,8 +1,11 @@
 const express = require('express');
+const cors = require('cors');
 const { faker }= require('@faker-js/faker');
 const _ = require('lodash');
 
 const app = express();
+
+app.use(cors());
 
 faker.locale = 'ru';
 

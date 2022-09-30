@@ -1,4 +1,5 @@
 import { personsApi } from '../../api/api';
+import { queryCount } from '../../constants/urls';
 import { tableActionTypes } from "./actionTypes";
 
 const getPersonsAction = (persons) => ({
@@ -8,7 +9,7 @@ const getPersonsAction = (persons) => ({
 
 export const getPersons = () => {
     return async (dispatch) => {
-        const response = await personsApi.getPersons();
+        const response = await personsApi.getPersons(queryCount);
         dispatch(getPersonsAction(response));
     }
 };

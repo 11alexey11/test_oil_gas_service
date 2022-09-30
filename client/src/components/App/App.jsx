@@ -10,7 +10,7 @@ const App = () => {
     return (
         <div className='container'>
             <Table />
-            <Chart />
+            {/* <Chart /> */}
         </div>
     )
 };
