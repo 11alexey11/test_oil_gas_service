@@ -19,6 +19,7 @@
   "homepage": "https://github.com/11alexey11/test_oil_gas_service#readme",
   "dependencies": {
     "axios": "^0.27.2",
+    "rc-table": "^7.27.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.4",
