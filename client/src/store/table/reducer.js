@@ -2,7 +2,7 @@ import { tableActionTypes } from './actionTypes';
 
 const initialState = {
     persons: [],
-    errorMessage: ''
+    errorMessage: null
 };
 
 export const tableReducer = (state = initialState, action) => {
