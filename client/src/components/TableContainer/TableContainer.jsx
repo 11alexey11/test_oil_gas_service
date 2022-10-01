@@ -9,7 +9,6 @@ import { BodyRow } from './BodyRow';
 
 import { getPersons } from '../../store/table/actions';
 import { getErrorsSelector, getPersonsSelector } from '../../store/table/selectors';
-import { customizeTableData } from '../../utils/customizeTableData';
 import { tableColumns } from '../../constants/tableColumns';
 
 import './index.scss';
@@ -34,17 +33,13 @@ const TableContainer = () => {
 
     useEffect(() => {
         if (isFetching) {
-                console.log('Я тут')
                 dispatch(getPersons());
                 setIsFetching(false);
-        }
-        
+        }   
     }, [isFetching]);
 
     const scrollHandler = ({ target }) => {
         // clientHeight + scrollTop = clientHeight
-        console.log('All: ', target.scrollHeight);
-        console.log('Sum: ', target.clientHeight + target.scrollTop);
         if (target.scrollHeight - (target.clientHeight + target.scrollTop) < 50) {
             setIsFetching(true);
         }

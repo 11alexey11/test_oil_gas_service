@@ -1,5 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { getPersons, getPersonsSelector } from '../../store/table';
+import { Link } from 'react-router-dom';
 
 import { Chart } from '../Chart';
 import { TableContainer } from '../TableContainer';
@@ -9,7 +8,9 @@ import './index.scss';
 const App = () => {
     return (
         <div className='container'>
-            <TableContainer />
+            <Link className='btn' to='/table'>Show table</Link>
+            <Link className='btn' to='/chart'>Show chart</Link>
+            {/* <TableContainer /> */}
             {/* <Chart /> */}
         </div>
     )

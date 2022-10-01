@@ -2,8 +2,6 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
-const webpack = require('webpack');
-const Dotenv = require('dotenv-webpack');
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -13,7 +11,8 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, './dist'),
-        filename: isProd ? '[name].[contenthash].js': '[name].js'
+        filename: isProd ? '[name].[contenthash].js': '[name].js',
+        publicPath: '/'
     },
     module: {
         rules: [
@@ -44,11 +43,11 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: isProd ? '[name].[contenthash].css': '[name].css'
         }),
-        new Dotenv()
     ],
     devServer: {
         port: 5000,
-        hot: true
+        hot: true,
+        historyApiFallback: true,
     },
     mode: isProd ? 'production' : 'development'
 }
