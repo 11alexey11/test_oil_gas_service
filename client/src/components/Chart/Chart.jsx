@@ -1,26 +1,72 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Brush, CartesianGrid, Line, LineChart, ResponsiveContainer, XAxis, YAxis } from 'recharts';
+// import { Brush, CartesianGrid, Line, LineChart, ResponsiveContainer, XAxis, YAxis } from 'recharts';
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend,
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend
+);
 
 import { chartLineNames } from '../../constants/chartLineNames';
 import { getData } from '../../store/chart/actions';
 import { getCoordinatesSelector, getErrorsSelector } from '../../store/chart/selectors';
 import { generateColor } from '../../utils/generateColor';
-import { validateChartData } from '../../utils/validateChartData'
 
 import './index.scss';
+
+const options = {
+    maintainAspectRatio: false,
+    scales: {
+        y: {
+            type: 'category'
+        },
+        x: {
+            type: 'linear',
+            position: 'top'
+        }
+    }
+}
 
 const Chart = () => {
     const dispatch = useDispatch();
     const [isFetching, setIsFetching] = useState(true);
 
-    // мемоизировать цвета, чтобы одинаковый цвет графиков был
-    const colors = useMemo(() => generateColor(chartLineNames.length), [chartLineNames.length]);
     const coordinates = useSelector(getCoordinatesSelector);
     const error = useSelector(getErrorsSelector);
+    const data = {
+        datasets: chartLineNames.map((chartLine) => {
+            const color = generateColor();
+            return {
+                label: chartLine,
+                data: coordinates,
+                parsing: {
+                    yAxisKey: 'name',
+                    xAxisKey: chartLine
+                },
+                backgroundColor: color,
+                borderColor: color
+            }
+        })
+    };
 
     const scrollHandler = ({ target }) => {
         // clientHeight + scrollTop = clientHeight
+        console.log('Я тут')
         if (target.scrollHeight === target.clientHeight + target.scrollTop) {
             setIsFetching(true);
         }
@@ -37,33 +83,9 @@ const Chart = () => {
     return (
         <>
             {
-                !error && coordinates.length !== 0 ?
-                (<div className='chart' onScroll={scrollHandler}>
-                    <ResponsiveContainer width='100%' height='100%'>
-                        <LineChart
-                            layout='vertical'
-                            data={coordinates}
-                            margin={{
-                                top: 20,
-                                right: 40,
-                                left: 30,
-                                bottom: 5
-                            }}
-                        >
-                            <Brush dataKey="name" height={30} stroke="#8884d8" width={150} />
-                            <CartesianGrid vertical={false} />
-                            <XAxis type='number' orientation='top' />
-                            <YAxis 
-                                type='category'
-                                dataKey='name' 
-                            />
-                            {
-                                chartLineNames.map((item, index) => {
-                                    return <Line key={index} dataKey={item} stroke={colors[index]} dot={false} isAnimationActive={false} />
-                                })
-                            }
-                        </LineChart>
-                    </ResponsiveContainer>
+                !error ?
+                (<div className='chart'>
+                    <Line onScroll={scrollHandler} width={300} height={900} data={data} options={options} />
                 </div>) : <div>Что-то пошло не так</div>
             }
         </>

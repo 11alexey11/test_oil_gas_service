@@ -10,7 +10,6 @@ const getDataAction = (data) => ({
 export const getData = () => {
     return async (dispatch) => {
         const response = await chartApi.getCoordinates(queryCount);
-        console.log(response);
         dispatch(getDataAction(response));
     }
 };

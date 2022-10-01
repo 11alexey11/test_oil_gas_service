@@ -20,7 +20,7 @@ export const validateChartData = (data) => {
 
     const times = getTimes(hour, av.length);
 
-    const chartData = av.map((_, index) => {
+    const chartData = Array.from({ length: av.length }, (_, index) => {
         return {
             name: index === 0 ? dateString : times[index],
             av: av[index],
