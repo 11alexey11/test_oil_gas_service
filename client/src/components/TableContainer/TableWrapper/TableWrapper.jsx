@@ -1,3 +1,3 @@
-const TableWrapper = (props) => (<table className='table__wrapper' {...props}></table>);
+const TableWrapper = (props) => (<table { ...props } className='table__wrapper'></table>);
 
 export default TableWrapper;

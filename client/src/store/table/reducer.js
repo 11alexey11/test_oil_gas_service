@@ -1,3 +1,4 @@
+import { customizeTableData } from '../../utils/customizeTableData';
 import { tableActionTypes } from './actionTypes';
 
 const initialState = {
@@ -10,7 +11,7 @@ export const tableReducer = (state = initialState, action) => {
         case tableActionTypes.getPersons: {
             return {
                 ...state,
-                persons: [ ...state.persons, ...action.payload.data ],
+                persons: customizeTableData([ ...state.persons, ...action.payload.data ]),
                 errorMessage: action.payload.errorMessage
             }
         }

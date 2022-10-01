@@ -44,72 +44,94 @@ body {
     width: 100%;
 }
 
-@media screen and (max-width: 1350px) {
-    .container {
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-        flex-direction: column;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .table__header {
-        &__title    {
-            font-size: 16px;
-        }
-
-        &__row__cell {
-            font-size: 12px;
-        }
-    }
-
-    .table__main__table__body__{
-        &__row__cell {
-            font-size: 12px;
-        }
-    }
-}
-
-@media screen and (max-width: 576px) {
-    .table__header {
+@media screen and (max-width: 780px) {
+    .table {
         &__title {
-            font-size: 13px;
+            font-size: 24px;
         }
 
-        &__row__cell {
-            font-size: 9px;
-            padding: 10px 5px;
+        &__header {
+            &__cell {
+                font-size: 14px;
+            }
         }
-    }
 
-    .table__main__table__body{
-        &__row__cell {
-            font-size: 12px;
-            padding: 10px 5px;
+        &__body {
+            &__cell {
+                font-size: 14px;
+
+                &__wrapper__span {
+                    font-size: 14px;
+                }
+            }
         }
     }
 }
 
-@media screen and (max-width: 480px) {
-    .table__header {
-        &__title    {
-            font-size: 13px;
+@media screen and (max-width: 610px) {
+    .table {
+        &__title {
+            font-size: 18px;
         }
 
-        &__row__cell {
-            font-size: 9px;
-            padding: 10px 2px;
+        &__header {
+            &__cell {
+                padding: 10px 5px;
+                font-size: 10px;
+            }
+        }
+
+        &__body {
+            &__cell {
+                padding: 10px 5px;
+                font-size: 10px;
+
+                &__wrapper__span {
+                    font-size: 10px;
+                }
+
+                &__img,
+                &__wrapper__img {
+                    width: 18px;
+                    height: 18px;
+                }
+            }
         }
     }
+}
 
-    .table__main__table__body{
-        &__row__cell {
-            font-size: 12px;
-            padding: 10px 2px;
+@media screen and (max-width: 440px) {
+    .container {
+        padding: 0;
+    }
+
+    .table {
+        &__title {
+            font-size: 14px;
+        }
+
+        &__header {
+            &__cell {
+                padding: 10px 2px;
+                font-size: 8px;
+            }
+        }
+
+        &__body {
+            &__cell {
+                padding: 10px 2px;
+                font-size: 8px;
+
+                &__wrapper__span {
+                    font-size: 8px;
+                }
+
+                &__img,
+                &__wrapper__img {
+                    width: 10px;
+                    height: 10px;
+                }
+            }
         }
     }
 }

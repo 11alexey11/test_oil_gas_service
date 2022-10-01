@@ -30,7 +30,8 @@ app.get('/persons', (req, res) => {
                 gender: gender,
                 city: faker.address.cityName(),
                 age: faker.datatype.number({ min: 14, max: 60 }),
-                duration: faker.datatype.number({ min: 20, max: 100, precision: 0.01 })
+                duration: faker.datatype.number({ min: 20, max: 100, precision: 0.01 }),
+                isNamePic: faker.datatype.boolean()
             }
         }),
         errorMessage: null
