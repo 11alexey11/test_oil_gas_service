@@ -30,12 +30,13 @@ import { generateColor } from '../../utils/generateColor';
 import './index.scss';
 
 const options = {
-    maintainAspectRatio: false,
+    responsive: true,
+    indexAxis: 'y',
     scales: {
-        y: {
-            type: 'category'
+        yAxis: {
+            type: 'category',
         },
-        x: {
+        xAxis: {
             type: 'linear',
             position: 'top'
         }
@@ -49,15 +50,12 @@ const Chart = () => {
     const coordinates = useSelector(getCoordinatesSelector);
     const error = useSelector(getErrorsSelector);
     const data = {
+        labels: coordinates.map((coordinate) => coordinate.name),
         datasets: chartLineNames.map((chartLine) => {
             const color = generateColor();
             return {
                 label: chartLine,
-                data: coordinates,
-                parsing: {
-                    yAxisKey: 'name',
-                    xAxisKey: chartLine
-                },
+                data: coordinates.map((coordinate) => coordinate[chartLine]),
                 backgroundColor: color,
                 borderColor: color
             }
@@ -66,7 +64,7 @@ const Chart = () => {
 
     const scrollHandler = ({ target }) => {
         // clientHeight + scrollTop = clientHeight
-        console.log('Я тут')
+        console.log(target)
         if (target.scrollHeight === target.clientHeight + target.scrollTop) {
             setIsFetching(true);
         }
@@ -84,8 +82,8 @@ const Chart = () => {
         <>
             {
                 !error ?
-                (<div className='chart'>
-                    <Line onScroll={scrollHandler} width={300} height={900} data={data} options={options} />
+                (<div onScroll={scrollHandler} className='chart' >
+                    <Line className='chart__line' data={data} options={options} />
                 </div>) : <div>Что-то пошло не так</div>
             }
         </>
