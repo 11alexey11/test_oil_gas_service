@@ -38,6 +38,34 @@ app.get('/persons', (req, res) => {
     })
 });
 
+app.get('/coordinates', (req, res) => {
+    // получение query из запроса
+    const count = req.query.count;
+
+    // в случае если нет count, то ошибка
+    if (!count) {
+        return res
+            .status(400)
+            .send({ errorMessage: 'Missing query parameter' })
+    }
+    const data = {
+        data: {
+            date: faker.date.past(),
+            hour: faker.datatype.number(0, 23),
+            av: _.times(count, () => faker.datatype.number({ min: -40, max: 40 })),
+            bv: _.times(count, () => faker.datatype.number({ min: -40, max: 40 })),
+            cv: _.times(count, () => faker.datatype.number({ min: -40, max: 40 })),
+            dv: _.times(count, () => faker.datatype.number({ min: -40, max: 40 })),
+            ev: _.times(count, () => faker.datatype.number({ min: -40, max: 40 })),
+            fv: _.times(count, () => faker.datatype.number({ min: -40, max: 40 })),
+            gv: _.times(count, () => faker.datatype.number({ min: -40, max: 40 })),
+        },
+        errorMessage: null
+    }
+
+    res.send(data);
+});
+
 app.listen(5050, () => {
     console.log('Server started')
 });

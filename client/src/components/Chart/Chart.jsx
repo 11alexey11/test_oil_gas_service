@@ -37,7 +37,7 @@ const Chart = () => {
     return (
         <>
             {
-                error.length === 0 && coordinates.length !== 0 ?
+                !error && coordinates.length !== 0 ?
                 (<div className='chart' onScroll={scrollHandler}>
                     <ResponsiveContainer width='100%' height='100%'>
                         <LineChart

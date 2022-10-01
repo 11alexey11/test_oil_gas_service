@@ -1,6 +1,6 @@
 import * as axios from 'axios';
 
-import { fakePersonsUrl } from '../constants/urls';
+import { fakeChartUrl, fakePersonsUrl } from '../constants/urls';
 
 export const personsApi = {
     getPersons(queryCount) {
@@ -23,8 +23,8 @@ export const personsApi = {
 }
 
 export const chartApi = {
-    getCoordinates() {
-        return axios.post(fakePersonsUrl)
+    getCoordinates(queryCount) {
+        return axios.get(`${fakeChartUrl}?count=${queryCount}`)
             .then((response) => response.data)
             .catch((err) => {
                 if (err.response.data) {
