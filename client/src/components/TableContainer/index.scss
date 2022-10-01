@@ -33,13 +33,14 @@
 
 	&__body {
 		&__row {
+			height: 55px;
 			&:nth-child(odd) {
 				background-color: $dark-grey-row;
 			}
 		}
 
 		&__cell {
-			padding: 10px;
+			padding: 0 5px;
 			text-align: left;
 			color: $dark-font;
 			vertical-align: middle;

@@ -5,7 +5,7 @@ export const tableColumns = [
     {
         title: '#',
         dataIndex: 'number',
-        width: '30px',
+        width: '40px',
     },
     {
         title: 'Фамилия Имя',
@@ -33,12 +33,12 @@ export const tableColumns = [
     {
         title: 'Пол',
         dataIndex: 'gender',
-        width: '30px'
+        width: '60px'
     },
     {
         title: 'Возраст',
         dataIndex: 'age',
-        width: '90px',
+        width: '95px',
     },
     {
         title: 'Город',
@@ -48,12 +48,12 @@ export const tableColumns = [
     {
         title: 'Расстояние',
         dataIndex: 'duration',
-        width: '120px',
+        width: '125px',
     },
     {
         title: 'Результаты',
         dataIndex: '',
-        minWidth: '110px',
+        minWidth: '125px',
         render() {
             return <img className='table__body__cell__img' src={resultSrc} alt='result'></img>
         }
