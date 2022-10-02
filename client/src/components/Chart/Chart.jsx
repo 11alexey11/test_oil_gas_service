@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { Brush, CartesianGrid, Line, LineChart, ResponsiveContainer, XAxis, YAxis } from 'recharts';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -25,13 +24,14 @@ ChartJS.register(
 import { chartLineNames } from '../../constants/chartLineNames';
 import { getData } from '../../store/chart/actions';
 import { getCoordinatesSelector, getErrorsSelector } from '../../store/chart/selectors';
-import { generateColor } from '../../utils/generateColor';
+import { generateColors } from '../../utils/generateColors';
 
 import './index.scss';
 
 const options = {
     responsive: true,
     indexAxis: 'y',
+    maintainAspectRatio: false,
     scales: {
         yAxis: {
             type: 'category',
@@ -46,25 +46,25 @@ const options = {
 const Chart = () => {
     const dispatch = useDispatch();
     const [isFetching, setIsFetching] = useState(true);
+    const [coefficientHeight, setCoefficientHeight] = useState(0);
 
     const coordinates = useSelector(getCoordinatesSelector);
+    const colors = useMemo(() => generateColors(chartLineNames.length), []);
     const error = useSelector(getErrorsSelector);
     const data = {
         labels: coordinates.map((coordinate) => coordinate.name),
-        datasets: chartLineNames.map((chartLine) => {
-            const color = generateColor();
+        datasets: chartLineNames.map((chartLine, index) => {
             return {
                 label: chartLine,
                 data: coordinates.map((coordinate) => coordinate[chartLine]),
-                backgroundColor: color,
-                borderColor: color
+                backgroundColor: colors[index],
+                borderColor: colors[index]
             }
         })
     };
 
     const scrollHandler = ({ target }) => {
         // clientHeight + scrollTop = clientHeight
-        console.log(target)
         if (target.scrollHeight === target.clientHeight + target.scrollTop) {
             setIsFetching(true);
         }
@@ -74,6 +74,7 @@ const Chart = () => {
         if (isFetching) {
                 dispatch(getData());
                 setIsFetching(false);
+                setCoefficientHeight(coefficientHeight + 1);
         }
         
     }, [isFetching]);
@@ -83,7 +84,9 @@ const Chart = () => {
             {
                 !error ?
                 (<div onScroll={scrollHandler} className='chart' >
-                    <Line className='chart__line' data={data} options={options} />
+                    <div className='chart__container' style={{ height: `${coefficientHeight * 700}px` }}>
+                        <Line height='100%' data={data} options={options} />
+                    </div>
                 </div>) : <div>Что-то пошло не так</div>
             }
         </>
