@@ -20,6 +20,13 @@ export const chartReducer = (state = initialState, action) => {
                 errorMessage: action.payload.errorMessage
             }
         }
+        case chartActionTypes.clearData: {
+            return {
+                ...state,
+                data: [],
+                errorMessage: null
+            }
+        }
         default: {
             return state;
         }

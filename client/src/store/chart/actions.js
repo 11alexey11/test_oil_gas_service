@@ -7,6 +7,10 @@ const getDataAction = (data) => ({
     payload: data
 });
 
+export const clearData = () => ({
+    type: chartActionTypes.clearData
+});
+
 export const getData = () => {
     return async (dispatch) => {
         const response = await chartApi.getCoordinates(queryCount);

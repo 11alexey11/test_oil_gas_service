@@ -22,7 +22,7 @@ ChartJS.register(
 );
 
 import { chartLineNames } from '../../constants/chartLineNames';
-import { getData } from '../../store/chart/actions';
+import { clearData, getData } from '../../store/chart/actions';
 import { getCoordinatesSelector, getErrorsSelector } from '../../store/chart/selectors';
 import { generateColors } from '../../utils/generateColors';
 
@@ -78,6 +78,12 @@ const Chart = () => {
         }
         
     }, [isFetching]);
+
+    useEffect(() => {
+        return () => {
+            dispatch(clearData());
+        }
+    }, []);
 
     return (
         <>
