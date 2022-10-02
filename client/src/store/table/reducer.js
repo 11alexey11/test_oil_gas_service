@@ -15,6 +15,13 @@ export const tableReducer = (state = initialState, action) => {
                 errorMessage: action.payload.errorMessage
             }
         }
+        case tableActionTypes.clearPersons: {
+            return {
+                ...state,
+                persons: [],
+                errorMessage: null
+            }
+        }
         default: {
             return state;
         }

@@ -7,6 +7,10 @@ const getPersonsAction = (persons) => ({
     payload: persons
 });
 
+export const clearPersons = () => ({
+    type: tableActionTypes.clearPersons
+});
+
 export const getPersons = () => {
     return async (dispatch) => {
         const response = await personsApi.getPersons(queryCount);

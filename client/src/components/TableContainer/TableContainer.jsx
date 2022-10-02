@@ -7,7 +7,7 @@ import { TableWrapper } from './TableWrapper';
 import { BodyCell } from './BodyCell';
 import { BodyRow } from './BodyRow';
 
-import { getPersons } from '../../store/table/actions';
+import { clearPersons, getPersons } from '../../store/table/actions';
 import { getErrorsSelector, getPersonsSelector } from '../../store/table/selectors';
 import { tableColumns } from '../../constants/tableColumns';
 
@@ -37,6 +37,12 @@ const TableContainer = () => {
                 setIsFetching(false);
         }   
     }, [isFetching]);
+
+    useEffect(() => {
+        return () => {
+            dispatch(clearPersons());
+        }
+    }, []);
 
     const scrollHandler = ({ target }) => {
         // clientHeight + scrollTop = clientHeight
