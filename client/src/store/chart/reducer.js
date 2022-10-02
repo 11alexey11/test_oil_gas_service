@@ -3,14 +3,17 @@ import { chartActionTypes } from './actionTypes';
 
 const initialState = {
     data: [],
-    errorMessage: ''
+    errorMessage: null
 };
 
 export const chartReducer = (state = initialState, action) => {
     switch(action.type) {
         case chartActionTypes.getData: {
+            let validateData = [];
             const data = action.payload.data;
-            const validateData = validateChartData(data);
+            if (!action.payload.errorMessage) {
+                validateData = validateChartData(data);
+            }
             return {
                 ...state,
                 data: [...state.data, ...validateData],
