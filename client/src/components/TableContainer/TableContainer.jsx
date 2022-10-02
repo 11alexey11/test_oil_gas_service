@@ -13,6 +13,7 @@ import { tableColumns } from '../../constants/tableColumns';
 
 import './index.scss';
 
+// формирование components для навешивания классов
 const components = {
     table: TableWrapper,
     header: {
@@ -28,16 +29,21 @@ const TableContainer = () => {
     const dispatch = useDispatch();
     const [isFetching, setIsFetching] = useState(true);
 
+    // получение набора данных с сервера
     const persons = useSelector(getPersonsSelector);
+    // получение ошибки
     const error = useSelector(getErrorsSelector);
 
     useEffect(() => {
+        // срабатывает при достижении условия скролла
         if (isFetching) {
-                dispatch(getPersons());
-                setIsFetching(false);
+            // получение нового набора данных
+            dispatch(getPersons());
+            setIsFetching(false);
         }   
     }, [isFetching]);
 
+    // componentWillUnmount
     useEffect(() => {
         return () => {
             dispatch(clearPersons());

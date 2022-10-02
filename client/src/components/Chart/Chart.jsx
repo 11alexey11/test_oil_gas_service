@@ -28,6 +28,7 @@ import { generateColors } from '../../utils/generateColors';
 
 import './index.scss';
 
+// опции для Chart
 const options = {
     responsive: true,
     indexAxis: 'y',
@@ -46,16 +47,23 @@ const options = {
 const Chart = () => {
     const dispatch = useDispatch();
     const [isFetching, setIsFetching] = useState(true);
+    // state для динамического изменения высоты контейнера для chart
     const [coefficientHeight, setCoefficientHeight] = useState(0);
 
+    // получение значений с сервера
     const coordinates = useSelector(getCoordinatesSelector);
+    // мемоизирование значение цветов, чтобы при каждом изменении state были одни и те же цвета для графиков
     const colors = useMemo(() => generateColors(chartLineNames.length), []);
+    // получение ошибок с сервера
     const error = useSelector(getErrorsSelector);
     const data = {
+        // ticks для y оси
         labels: coordinates.map((coordinate) => coordinate.name),
+        // наборы данных
         datasets: chartLineNames.map((chartLine, index) => {
             return {
                 label: chartLine,
+                // данные в зависимости от элемента chartLineNames (av, bv ...)
                 data: coordinates.map((coordinate) => coordinate[chartLine]),
                 backgroundColor: colors[index],
                 borderColor: colors[index]
@@ -71,14 +79,18 @@ const Chart = () => {
     }
 
     useEffect(() => {
+        // срабатывает при достижении условия скролла
         if (isFetching) {
+                // получение нового набора данных
                 dispatch(getData());
                 setIsFetching(false);
+                // прибавение коэффициента
                 setCoefficientHeight(coefficientHeight + 1);
         }
         
     }, [isFetching]);
 
+    // componentWillUnmount
     useEffect(() => {
         return () => {
             dispatch(clearData());
